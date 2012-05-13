@@ -17,6 +17,16 @@ alias install='sudo apt-get update && sudo apt-get install'
 
 ### Functions
 
+repeat () {
+	n=$1
+	shift
+	while [ $(( n -= 1 )) -ge 0 ]
+	do
+		"$@"
+	done
+}
+
+
 whatip() {
     if [ $# != 1 ]; then
         echo "Usage: whatip <ip address>"
