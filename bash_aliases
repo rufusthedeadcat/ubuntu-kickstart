@@ -86,6 +86,9 @@ bkup() {
     mv $1 $1.bkup
 }
 
+bkdown() {
+    mv $1 " basename "$1" .bkup"
+}
 
 # http://madebynathan.com/2011/10/04/a-nicer-way-to-use-xclip/
 #
