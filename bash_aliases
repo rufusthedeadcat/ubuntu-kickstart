@@ -71,6 +71,17 @@ passgen() {
     echo $(< /dev/urandom tr -dc A-Za-z0-9_ | head -c$1)
 }
 
+coinflip() {
+	if [[ $(($RANDOM % 2)) -eq 1 ]]; then
+		echo "Heads";
+	else
+		echo "Tails"
+	fi
+}
+
+
+
+
 findclass() {
 	# lame, i hate working with bash arrays
 	if [ $# == 2 ]
