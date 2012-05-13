@@ -90,6 +90,13 @@ bkdown() {
     mv $1 " basename "$1" .bkup"
 }
 
+
+histgrep() {
+	_grh="$@"
+	history | grep "$_grh"
+}
+
+
 # http://madebynathan.com/2011/10/04/a-nicer-way-to-use-xclip/
 #
 # A shortcut function that simplifies usage of xclip.
