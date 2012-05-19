@@ -125,6 +125,11 @@ screencast(){
 	ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq $1
 }
 
+timeit(){
+	echo "Press any key to stop"
+	time read -sn1
+}
+
 
 # http://madebynathan.com/2011/10/04/a-nicer-way-to-use-xclip/
 #
