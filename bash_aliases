@@ -121,6 +121,10 @@ wiki() {
 	dig +short txt $1.wp.dg.cx
 }
 
+screencast(){
+	ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq $1
+}
+
 
 # http://madebynathan.com/2011/10/04/a-nicer-way-to-use-xclip/
 #
