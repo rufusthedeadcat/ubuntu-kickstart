@@ -117,6 +117,10 @@ histgrep() {
 	history | grep "$_grh"
 }
 
+wiki() {
+	dig +short txt $1.wp.dg.cx
+}
+
 
 # http://madebynathan.com/2011/10/04/a-nicer-way-to-use-xclip/
 #
