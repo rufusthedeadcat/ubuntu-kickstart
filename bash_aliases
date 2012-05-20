@@ -130,6 +130,10 @@ timeit(){
 	time read -sn1
 }
 
+slowecho(){
+	echo $2 | pv -qL 10
+}
+
 
 # http://madebynathan.com/2011/10/04/a-nicer-way-to-use-xclip/
 #
