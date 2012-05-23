@@ -134,6 +134,12 @@ slowecho(){
 	echo $2 | pv -qL 10
 }
 
+xmurder(){
+	WINDOW_ID=`xwininfo | grep "Window id:" | awk '{print $4}'`
+	PROCESS_ID=`xprop -id $WINDOW_ID _NET_WM_PID | awk '{print $3}'`
+	kill -9 $PROCESS_ID
+}
+
 
 # http://madebynathan.com/2011/10/04/a-nicer-way-to-use-xclip/
 #
