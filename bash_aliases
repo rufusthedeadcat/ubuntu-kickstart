@@ -140,6 +140,13 @@ xmurder(){
 	kill -9 $PROCESS_ID
 }
 
+sortbytype(){
+	for ext in $( find . -type f | grep -o '\.[^./]*$' | sort | uniq -i); do
+    		echo -n "${ext} "
+		find . -iname "*${ext}" -exec du -b {} + | awk 'BEGIN { size=0; count=0 } { size+=$1; count++ } END { print count, size }'
+	done
+}
+
 
 # http://madebynathan.com/2011/10/04/a-nicer-way-to-use-xclip/
 #
