@@ -131,7 +131,7 @@ timeit(){
 }
 
 slowecho(){
-	echo $2 | pv -qL 10
+	echo $1 | pv -qL 10
 }
 
 xmurder(){
