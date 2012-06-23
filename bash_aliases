@@ -14,8 +14,13 @@ alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 
 alias install='sudo apt-get update && sudo apt-get install'
 alias noise='tr -c "[:digit:]" " " < /dev/urandom | dd cbs=$COLUMNS conv=unblock | GREP_COLOR="1;3$(($RANDOM % 8))" grep --color "[^ ]"'
+alias distract='cat /dev/urandom | hexdump -C | grep "ca fe"'
+
+
 
 ### Functions
+
+? () { echo "$*" | bc -l; }
 
 repeat () {
 	n=$1
@@ -44,17 +49,7 @@ mkcd() {
     fi
 }
 
-up() {
-    local d=".."
-    limit=$1
-    if [ $1 -gt 1 ]; then
-      for i in {1..$1}
-        do
-          d=$d/..
-        done
-    fi
-    cd $d
-}
+up() { [ $(( $1 + 0 )) -gt 0 ] && cd $(eval "printf '../'%.0s {1..$1}"); }
 
 extract() {
     if [ -f $1 ]; then
