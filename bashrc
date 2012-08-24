@@ -111,10 +111,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-alias Mysql='mysql -uroot -pattask'
-alias src='cd /home/jaygreene/attask/src'
-JVMSTAT_JAVA_HOME=$JAVA_HOME
-JVMSTAT_HOME=/home/jaygreene/Tools/jvmstat
-PATH=$JVMSTAT_HOME/bin:$JAVA_HOME/bin:$PATH:/var/lib/gems/1.8/bin:/home/jaygreene/scripts
+alias src='cd /home/jaygreene/src'
+PATH=$PATH:/home/jaygreene/scripts
 #PS1='\e[0;31m\u@\h:\w\e[m\$ '
 
