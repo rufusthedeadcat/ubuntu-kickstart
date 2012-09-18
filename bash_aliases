@@ -12,7 +12,8 @@ alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 
 alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 
-alias install='sudo apt-get update && sudo apt-get install'
+alias update='sudo apt-get update'
+alias install='sudo apt-get install'
 alias noise='tr -c "[:digit:]" " " < /dev/urandom | dd cbs=$COLUMNS conv=unblock | GREP_COLOR="1;3$(($RANDOM % 8))" grep --color "[^ ]"'
 alias distract='cat /dev/urandom | hexdump -C | grep "ca fe"'
 
