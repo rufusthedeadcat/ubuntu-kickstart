@@ -4,15 +4,13 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias gapt='sudo apt-get'
 alias bd='cd -'
 
 alias webs='python -m SimpleHTTPServer'
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias fakemail='python -m smtpd -n -c DebuggingServer localhost:20025'
 
-alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
-
+alias gapt='sudo apt-get'
 alias update='sudo apt-get update'
 alias install='sudo apt-get install'
 alias upstall='sudo apt-get update && sudo apt-get install'
