@@ -6,17 +6,66 @@ alias ....='cd ../../..'
 
 alias bd='cd -'
 
+# <!> Python servers
 alias webs='python -m SimpleHTTPServer'
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias fakemail='python -m smtpd -n -c DebuggingServer localhost:20025'
+# </!>
 
+# <!> Ubuntu apt-get aliases
 alias gapt='sudo apt-get'
 alias update='sudo apt-get update'
 alias install='sudo apt-get install'
 alias upstall='sudo apt-get update && sudo apt-get install'
+# </!>
+
+# Display random digits speckled across the screen
 alias noise='tr -c "[:digit:]" " " < /dev/urandom | dd cbs=$COLUMNS conv=unblock | GREP_COLOR="1;3$(($RANDOM % 8))" grep --color "[^ ]"'
 alias distract='cat /dev/urandom | hexdump -C | grep "ca fe"'
+
+# Prints a 20 x 20 matrix of two digit numbers
+#(make this into a function to pass in grid size)
+alias numgrid="hexdump -v -e '\"%u\"' </dev/urandom|fold -40|head -n 20|sed 's/\(.\{2\}\)/\1 /g'"
+
+#clear the terminal (no upwards scrolling)
 alias cls='printf "\033c"'
+
+#sha1 hash
+alias sha1='openssl sha1'
+
+#Display current time
+alias now='date +"%T"'
+
+#Display current date and time
+alias nowdate='date +"%d-%m-%Y %T"'
+
+#List of ports
+alias ports='netstat -tulanp'
+
+# rm safety net
+alias del='rm -I --preserve-root'
+
+#Top 10 memory eating processes
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+
+#Top 10 cpu eating processes
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+
+## Get server cpu info ##
+alias cpuinfo='lscpu'
+
+# shoot the fat ducks in your current dir and sub dirs
+alias ducks='du -ck | sort -nr | head'
+
+# Easily pass a string to and look for it in the process table.
+# Even removes the grep of the current line.
+alias ps2='ps -ef | grep -v $$ | grep -i '
+
+# Helps with copy and pasting to and from a terminal using X and the mouse
+# Especially for piping output to the clipboard and vice versa
+alias xcopy='xsel --clipboard --input'
+alias xpaste='xsel --clipboard --output'
+
 
 ### Functions
 
@@ -24,6 +73,24 @@ alias cls='printf "\033c"'
 # > ? 5+5
 # > 10
 ? () { echo "$*" | bc -l; }
+
+#cd to a directory and immediately display its contents
+cdl() {
+  cd"$@";
+  ls -alF;
+}
+
+#Display basic system information
+function sysstats() {
+    echo -e "\nMachine information:" ; uname -a
+    echo -e "\nUsers logged on:" ; w -h
+    echo -e "\nCurrent date :" ; date
+    echo -e "\nMachine status :" ; uptime
+    echo -e "\nMemory status :" ; free
+    echo -e "\nFilesystem status :"; df -h
+}
+
+
 
 #Repeat a command n times
 repeat () {
@@ -129,7 +196,7 @@ bkup() {
     cp $1 $1.bkup
 }
 
-#Restore a .bkup file
+#Restore a .bkup file (Warning: will overwrite)
 bkdown() {
     mv $1 " basename "$1" .bkup"
 }
