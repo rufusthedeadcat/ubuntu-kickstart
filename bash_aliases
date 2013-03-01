@@ -37,7 +37,7 @@ alias sha1='openssl sha1'
 alias now='date +"%T"'
 
 #Display current date and time
-alias nowdate='date +"%d-%m-%Y %T"'
+alias nowdate='date +"%A %Y年%m月%d日 %T"'
 
 #List of ports
 alias ports='netstat -tulanp'
@@ -65,6 +65,13 @@ alias ps2='ps -ef | grep -v $$ | grep -i '
 # Especially for piping output to the clipboard and vice versa
 alias xcopy='xsel --clipboard --input'
 alias xpaste='xsel --clipboard --output'
+
+# curl convenience aliases for REST calls
+alias rest-get="curl -i -H \"Accept: application/json\""
+alias rest-post="curl -i -H \"Accept: application/json\" -X POST -d "
+alias rest-put="curl -i -H \"Accept: application/json\" -X PUT -d "
+alias rest-delete="curl -i -H \"Accept: application/json\" -X DELETE "
+alias rest-post-put="curl -i -H \"Accept: application/json\" -H \"X-HTTP-Method-Override: PUT\" -X POST -d "
 
 
 ### Functions
