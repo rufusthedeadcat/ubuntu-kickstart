@@ -7,9 +7,8 @@ alias ....='cd ../../..'
 alias bd='cd -'
 
 # <!> Python servers
-alias webs='python -m SimpleHTTPServer'
-alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
-alias fakemail='python -m smtpd -n -c DebuggingServer localhost:20025'
+alias webshare='python -m SimpleHTTPServer'
+alias fakemail='sudo python -m smtpd -n -c DebuggingServer localhost:25'
 # </!>
 
 # <!> Ubuntu apt-get aliases
@@ -42,6 +41,9 @@ alias nowdate='date +"%A %Y年%m月%d日 %T"'
 #List of ports
 alias ports='netstat -tulanp'
 
+#Colorized JSON pretty printing
+alias pp='python -mjson.tool | pygmentize -l javascript'
+
 # rm safety net
 alias del='rm -I --preserve-root'
 
@@ -53,6 +55,9 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
 ## Get server cpu info ##
 alias cpuinfo='lscpu'
+
+#Let the cow suggest a commit message
+alias cowcommit='curl -s http://whatthecommit.com/index.txt | cowsay'
 
 # shoot the fat ducks in your current dir and sub dirs
 alias ducks='du -ck | sort -nr | head'
@@ -96,7 +101,6 @@ function sysstats() {
     echo -e "\nMemory status :" ; free
     echo -e "\nFilesystem status :"; df -h
 }
-
 
 
 #Repeat a command n times
@@ -233,6 +237,26 @@ timeit(){
 #Slowly echo the input back out to the screen
 slowecho(){
 	echo $1 | pv -qL 10
+}
+
+#Expand shortened urls (without being tracked by shortening service)
+expandurl() { 
+	curl -s "http://api.longurl.org/v2/expand?url=${1}&format=php" | awk -F '"' '{print $4}' 
+}
+
+#Define words and phrases with Google
+define() { 
+	typeset y=$@;curl -sA"Opera" "http://www.google.com/search?q=define:${y// /+}"|grep -Po '(?<=<li>)[^<]+';
+}
+
+#Google spellcheck
+spellcheck() { 
+	typeset y=$@;curl -sd "<spellrequest><text>$y</text></spellrequest>" https://www.google.com/tbproxy/spell|sed -n '/s="[0-9]"/{s/<[^>]*>/ /g;s/\t/ /g;s/ *\(.*\)/Suggestions: \1\n/g;p}'|tee >(grep -Eq '.*'||echo -e "OK");
+}
+
+#Google URL Shortener
+shorturl () { 
+	curl -s -d "url=${1}" http://goo.gl/api/url | sed -n "s/.*:\"\([^\"]*\).*/\1\n/p" ;
 }
 
 #Kill the parent process of a mouse-clicked X window 
