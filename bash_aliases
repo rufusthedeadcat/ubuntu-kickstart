@@ -324,3 +324,15 @@ cbp() {
   # Print status.
   echo -e "$_scs_col""Copied to clipboard:\e[0m $input"
 }
+
+#generate x files of y size full of random data
+junkfiles() {
+  sizeOfFiles=$1
+  numOfFiles=$2
+  width=$(echo "$numOfFiles" | wc -m);
+  for ((x=0; x<$numOfFiles; x++))
+  do
+    temp=`printf "%0*d" $width $x`
+    dd if=/dev/urandom of="fauxfile.$temp" bs=1024 count=$sizeOfFiles
+  done;
+}
