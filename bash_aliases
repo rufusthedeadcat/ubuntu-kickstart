@@ -6,8 +6,11 @@ alias ....='cd ../../..'
 
 alias bd='cd -'
 
+# Proxy fix for pip
+alias pip='pip3 --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org'
+
 # <!> Python servers
-alias webshare='python -m SimpleHTTPServer'
+alias webshare='python -m http.server'
 alias fakemail='sudo python -m smtpd -n -c DebuggingServer localhost:25'
 # </!>
 

@@ -8,7 +8,8 @@
 
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
-GREEN="\[\033[0;32m\]"
+BLUE="\[\033[01;34m\]"
+GREEN="\[\033[01;32m\]"
 NO_COLOUR="\[\033[0m\]"
 
 
@@ -63,7 +64,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}$RED\u@\h:\w$NO_COLOUR$YELLOW\$(__git_ps1)$NO_COLOUR\$ "
+    PS1="${debian_chroot:+($debian_chroot)}$GREEN\u$NO_COLOUR:$BLUE\w$NO_COLOUR$YELLOW\$(__git_ps1)$NO_COLOUR\$ "
 #    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
@@ -116,7 +117,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-alias src='cd /home/jaygreene/src'
-PATH=$PATH:/home/jaygreene/scripts
+alias src='cd /home/jgreene/src'
+alias scripts='cd /home/jgreene/scripts'
+PATH=$PATH:/home/jgreene/scripts
 #PS1='\e[0;31m\u@\h:\w\e[m\$ '
 
